@@ -14,27 +14,4 @@
  *= require_self
  */
 
-
-@import "bootstrap-sprockets";
-@import "bootstrap";
-
-.navybar {
-
-	margin-top: 30px;
-	margin-bottom: 15px;
-}
-
-#logo {
  
-  font-size: 1.2em;
-  color: #999;
- 
-  text-transform: uppercase;
-  letter-spacing: -1px;
-  font-weight: bold;
-  &:hover {
-    color: white;
-    text-decoration: none;
-
-  }
-}

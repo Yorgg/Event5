@@ -4,11 +4,17 @@
       <div class="jumbotron">
         <center><h1>Track your events</h1></center>
         <center><p>A simple way to create and share events. </p>
-           <%= link_to "Get started", signup_path, class: "btn btn-primary btn-lg" %> 
-         </center>
-        <br>Source: <a href="https://github.com/Yorgg/event5">Yorgg</a> 
+        <% if logged_in? %>
+        <%= link_to "Create an Event", new_path, class: "btn btn-success btn-lg" %>         
+        <% else %>
+        <%= link_to "Get started", signup_path, class: "btn btn-primary btn-lg" %> 
+        <% end %>
+        </center>
+        <br>
 
-                    
+        <a href="https://github.com/Yorgg/event5">View on github</a> 
+
+
 
       </div> 
     </div>

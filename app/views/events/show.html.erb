@@ -1,3 +1,63 @@
-<div class="col-md-4 col-md-offset-2">
-  <%= render 'layouts/new_event_form' %>
+
+
+ <div class="container">
+  <div class="col-md-8 col-md-offset-2">
+
+ 
+
+<h1> <%= @event.title %></h1>
+<p> <%=@event.body %> </p>
+<br>
+<p><strong>Where:</strong> <%=@event.address %> </p>
+<p><strong>When:</strong> <%=@event.starts_at.to_date.strftime("%B %d, %Y")  %> at <%=@event.time %> </p>
+ 
+<% unless logged_in? %>
+  
+ <%= link_to "Sign up and join this event", new_user_path,  class: "btn btn-success btn-block" %>
+ 
+
+<% else %>  
+<% if @event.attendees.find_by(id: current_user.id) %>
+
+  <%= button_to "Remove me from attending list", event_attending_path(@event.id), class: "btn btn-warning", :method=>:delete %> 
+
+  <% else %>
+    <%= form_for :event_attending, url: event_attendings_path, method: :post do |f| %>
+      <%= f.hidden_field :attended_event_id, :value => @event.id %>
+      <%= f.submit "Join this event", class: "btn btn-success " %>
+    <% end %>
+  <% end %>
+
+<% end %>
+
+
+<br>
+
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading"><strong>Who's going:</strong></div>
+
+<table class="table">
+        
+    <% @event.attendees.each_with_index do |x,i| %>
+      <tr>
+
+        <td><%= i+1 %></td>
+        <td><%= x.name %></td>
+        <% if logged_in? && current_user.id == @event.creator_id %>
+        <td><%= x.email %></td>
+        <% end %>
+        <td></td>
+        <td></td>
+        <td></td>
+
+      </tr>
+    <% end %>
+  
+</table>
+
+
 </div>
+ 
+
+ </div>

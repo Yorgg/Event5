@@ -5,11 +5,16 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     @user = users(:jean)
   end
   
-  test "login with valid information" do
+  test "log in from menu with valid information, log out from menu" do
+    has_button?('Menu')
     visit login_path
     fill_in('session_email', :with => @user.email)
     fill_in('session_password', :with => 'password')
-    click_on('Log in') 
+    click_button('Log in')
+    has_button?(@user.name)
     assert_equal current_path, user_path(@user.id)
+    click_on('home-button')
+    click_on('Log out')
+    has_button?('Menu')
   end
 end

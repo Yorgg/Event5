@@ -1,4 +1,5 @@
-jon:
-  name: Jon Yorg
-  email: 
+jean:
+  name: Jean Luc
+  email: jl@enterprise.com
   created_at: <%= Time.now %>
+  password_digest: <%= User.digest('password') %>

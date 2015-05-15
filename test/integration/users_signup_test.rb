@@ -11,9 +11,5 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
      after = User.count
      assert_not_equal before, after
    end
-   test "unsuccesful signups should render signup_path" do
-     visit new_user_path
-     click_on('Create my account')
-     assert_equal new_user_path, current_path
-   end
+   
 end

@@ -5,7 +5,7 @@ class UsersLoginTest < ActionDispatch::IntegrationTest
     @user = users(:jean)
   end
   
-  test "log in from menu with valid information, log out from menu" do
+  test "log in from correct menu with valid information, log out from correct menu" do
     has_button?('Menu')
     visit login_path
     fill_in('session_email', :with => @user.email)

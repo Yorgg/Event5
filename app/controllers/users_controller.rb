@@ -14,17 +14,25 @@ class UsersController < ApplicationController
     end
   end
 
-  private
-  
-  def user_params
-    params.require(:user).permit(:name,:password,:email)
-  end
-
   def show
   	unless logged_in?
   	  redirect_to login_path
   	  return
     end
   	@user = current_user
+  	@upcoming_created_events = current_user.created_events.starts_after(today)
+    @previous_created_events = current_user.created_events.starts_before(today)
+    @upcoming_events = current_user.attended_events.starts_after(today)
+    @previous_events = current_user.attended_events.starts_before(today)
+  end
+
+  private
+  
+  def user_params
+    params.require(:user).permit(:name,:password,:email)
+  end
+
+  def today
+    Time.zone.now.beginning_of_day
   end
 end

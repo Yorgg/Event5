@@ -1,0 +1,26 @@
+<h3> Events Created </h3>
+<div class="well">
+<p><strong>Upcoming</strong></p>
+  <table class="table">
+    <% @upcoming_created_events.each.with_index do |x,i| %>
+      <tr>
+        <td><%= link_to x.title, event_path(x.id) %></td>
+        <td><%= x.starts_at %></td>
+      </tr>
+    <% end %>
+ </table>
+
+  <br>
+
+  <p><strong>Previous</strong> </p>
+  <table class="table">  
+    <% @previous_created_events.each.with_index do |x,i| %>
+      <tr>
+        <td><%= link_to x.title, event_path(x.id) %></td>
+        <td><%= x.starts_at %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+ 
+ 

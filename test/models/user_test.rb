@@ -18,6 +18,16 @@ def setup
     assert_not @user.valid?, 'Email requirements not being met'
   end
 
+  test "empty names should fail" do
+  	@user.name = ''
+    assert_not @user.valid?, 'Name requirements not being met'
+  end
+
+   test "invalid names should fail" do
+  	@user.name = '  Jon'
+    assert_not @user.valid?, 'Name requirements not being met'
+  end
+
   test "valid emails should pass" do
     emails = %w[jon@outlook.com THE_US-ER@foo.bar.org 
     	first.last@foo.jp STEVE.nash@gmail.com stevebalmer@cool.ca]
